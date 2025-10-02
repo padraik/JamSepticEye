@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
+const PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
+
 @export var speed = 100.0
 @export var wander_range = 200
 
-enum State { IDLE, WANDER, FLEEING }
+enum State { IDLE, WANDER, KILL }
 var state = State.IDLE
 var target_position = Vector2.ZERO
-var flee_target = null
+var kill_target = null
+var can_fire = true
 
 func _ready():
 	add_to_group("humans")
@@ -27,23 +30,19 @@ func _physics_process(_delta):
 				state = State.IDLE
 				velocity = Vector2.ZERO
 				_start_idle_timer()
-		State.FLEEING:
-			if is_instance_valid(flee_target):
-				var direction = flee_target.position.direction_to(position)
-				velocity = direction * speed * 1.5 # Flee faster than wandering
-				move_and_slide()
-				
-				var zombie_detection_area = flee_target.get_node("DetectionArea")
-				if self in zombie_detection_area.get_overlapping_bodies():
-					if not $FleeCooldownTimer.is_stopped():
-						$FleeCooldownTimer.stop()
-				else:
-					if $FleeCooldownTimer.is_stopped():
-						$FleeCooldownTimer.start()
-			else:
-				state = State.IDLE
-				flee_target = null
-				_start_idle_timer()
+		State.KILL:
+			velocity = Vector2.ZERO
+			move_and_slide()
+			if is_instance_valid(kill_target) and can_fire:
+				_fire_projectile()
+
+func _fire_projectile():
+	can_fire = false
+	var projectile = PROJECTILE_SCENE.instantiate()
+	projectile.position = position
+	projectile.target_position = kill_target.position
+	get_parent().add_child(projectile)
+	$FireRateTimer.start()
 
 func _pick_new_wander_destination():
 	var random_offset = Vector2(randf_range(-wander_range, wander_range), randf_range(-wander_range, wander_range))
@@ -62,12 +61,16 @@ func _on_wander_timer_timeout():
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("zombies"):
-		if not is_instance_valid(flee_target): # Only acquire a new target if not already fleeing
-			state = State.FLEEING
-			flee_target = body
+		if not is_instance_valid(kill_target):
+			state = State.KILL
+			kill_target = body
 			$WanderTimer.stop()
 
-func _on_flee_cooldown_timer_timeout():
-	state = State.IDLE
-	flee_target = null
-	_start_idle_timer()
+func _on_detection_area_body_exited(body):
+	if body == kill_target:
+		state = State.WANDER
+		kill_target = null
+		_pick_new_wander_destination()
+
+func _on_fire_rate_timer_timeout():
+	can_fire = true
