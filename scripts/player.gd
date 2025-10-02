@@ -13,7 +13,7 @@ func _ready():
 	
 	# Create timer for stab animation
 	stab_timer = Timer.new()
-	stab_timer.wait_time = 2.0
+	stab_timer.wait_time = 0.5  # Half second for faster stab animation
 	stab_timer.one_shot = true
 	stab_timer.timeout.connect(_on_stab_timer_timeout)
 	add_child(stab_timer)
@@ -22,6 +22,10 @@ func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
 	move_and_slide()
+	
+	# Debug: Print current animation state every few frames
+	if Engine.get_process_frames() % 60 == 0:  # Print every 60 frames (about once per second)
+		print("Current animation: ", animated_sprite.animation, " is_stabbing: ", is_stabbing)
 	
 	# Handle animations based on movement (but don't override stab animation)
 	if not is_stabbing:
@@ -71,10 +75,14 @@ func _on_stab_timer_timeout():
 		_return_to_movement_animation()
 
 func _return_to_movement_animation():
+	print("_return_to_movement_animation called")
 	is_stabbing = false
 	stab_timer.stop()
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	print("Direction length: ", direction.length())
 	if direction.length() > 0:
+		print("Playing run animation")
 		animated_sprite.play("run")
 	else:
+		print("Playing idle animation")
 		animated_sprite.play("idle")

@@ -21,9 +21,20 @@ SoundManager="*res://scripts/sound_manager.gd"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=600
+window/size/viewport_width=2560
+window/size/viewport_height=1440
+window/size/resizable=true
+window/size/borderless=false
+window/size/always_on_top=false
+window/size/transparent=false
+window/size/no_focus=false
+window/size/initial_position_type=0
+window/size/initial_position_x=100
+window/size/initial_position_y=100
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=false
+window/per_pixel_transparency/enabled=false
 
 [input]
 
