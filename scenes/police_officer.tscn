@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" path="res://icon.svg" id="2_lmnop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67890"]
-radius = 58.0
-height = 128.0
+radius = 29.0
+height = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqrst"]
 radius = 300.0
@@ -15,6 +15,7 @@ collision_layer = 1
 script = ExtResource("1_ghijk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 modulate = Color(0.5, 1, 0.5, 1)
 texture = ExtResource("2_lmnop")
 
@@ -36,7 +37,12 @@ autostart = true
 wait_time = 2.0
 one_shot = true
 
+[node name="ConversionTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="ConversionTimer" to="." method="_on_conversion_timer_timeout"]

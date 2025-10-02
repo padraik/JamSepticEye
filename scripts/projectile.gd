@@ -11,8 +11,8 @@ func _on_body_entered(body):
 	if body.is_in_group("zombies"):
 		var roll = randf()
 		if roll < 0.25: # 1 in 4 chance
-			print("Zombie hit! Roll: ", roll, " - SUCCESS, zombie destroyed.")
-			body.queue_free() # Destroy the zombie
+			print("Zombie hit! Roll: ", roll, " - SUCCESS, zombie is down.")
+			body.go_down()
 		else:
 			print("Zombie hit! Roll: ", roll, " - FAILED, zombie survives.")
 		queue_free() # Destroy the projectile

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dttkygji4k64b"]
+
+[ext_resource type="Script" path="res://scripts/zombie_animator.gd" id="1_abcde"]
+[ext_resource type="Texture2D" uid="uid://c1a2b3d4e5f6" path="res://assets/zombie-idle.png" id="2_fghij"]
+[ext_resource type="Texture2D" path="res://assets/zombie-search.png" id="3_klmno"]
+[ext_resource type="Texture2D" uid="uid://e1f2g3h4i5j6" path="res://assets/zombie-chase.png" id="4_pqrst"]
+[ext_resource type="Texture2D" uid="uid://g1h2i3j4k5l6" path="res://assets/zombie-down.png" id="5_uvwxy"]
+
+[node name="ZombieAnimator" type="Node2D"]
+script = ExtResource("1_abcde")
+
+[node name="Idle" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_fghij")
+
+[node name="Search" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_klmno")
+
+[node name="Chase" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_pqrst")
+
+[node name="Down" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_uvwxy")

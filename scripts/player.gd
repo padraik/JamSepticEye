@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-signal conversion_initiated(target)
-
 @export var speed = 300.0
 @onready var conversion_area = $ConversionArea
 
@@ -26,4 +24,4 @@ func _attempt_conversion():
 				closest_body = body
 	
 	if closest_body:
-		conversion_initiated.emit(closest_body)
+		closest_body.infect()
