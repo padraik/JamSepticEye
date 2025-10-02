@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1c2b3a4e5f6"]
 
-[ext_resource type="Script" path="res://scripts/human.gd" id="1_ghijk"]
+[ext_resource type="Script" path="res://scripts/police_officer.gd" id="1_ghijk"]
 [ext_resource type="Texture2D" path="res://icon.svg" id="2_lmnop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67890"]
@@ -8,14 +8,14 @@ radius = 58.0
 height = 128.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqrst"]
-radius = 150.0
+radius = 300.0
 
-[node name="Human" type="CharacterBody2D"]
+[node name="PoliceOfficer" type="CharacterBody2D"]
 collision_layer = 1
 script = ExtResource("1_ghijk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.5, 0.5, 1, 1)
+modulate = Color(0.5, 1, 0.5, 1)
 texture = ExtResource("2_lmnop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,10 +32,11 @@ shape = SubResource("CircleShape2D_pqrst")
 wait_time = 2.0
 autostart = true
 
-[node name="FleeCooldownTimer" type="Timer" parent="."]
+[node name="FireRateTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="timeout" from="FleeCooldownTimer" to="." method="_on_flee_cooldown_timer_timeout"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
