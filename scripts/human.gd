@@ -7,6 +7,7 @@ enum State { IDLE, WANDER, FLEEING }
 var state = State.IDLE
 var target_position = Vector2.ZERO
 var flee_target = null
+var is_being_converted = false
 
 func _ready():
 	add_to_group("humans")

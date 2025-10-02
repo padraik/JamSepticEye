@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1c2b3a4e5f6"]
+[gd_scene load_steps=5 format=3 uid="uid://b6oqvjg3p0k2v"]
 
 [ext_resource type="Script" path="res://scripts/police_officer.gd" id="1_ghijk"]
 [ext_resource type="Texture2D" path="res://icon.svg" id="2_lmnop"]

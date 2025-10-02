@@ -10,9 +10,11 @@ var state = State.IDLE
 var target_position = Vector2.ZERO
 var kill_target = null
 var can_fire = true
+var is_being_converted = false
 
 func _ready():
 	add_to_group("humans")
+	add_to_group("police")
 	target_position = position
 	_start_idle_timer()
 
@@ -38,6 +40,7 @@ func _physics_process(_delta):
 
 func _fire_projectile():
 	can_fire = false
+	SoundManager.emit_sound(position, 1200.0)
 	var projectile = PROJECTILE_SCENE.instantiate()
 	projectile.position = position
 	projectile.target_position = kill_target.position
