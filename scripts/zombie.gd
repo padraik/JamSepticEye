@@ -14,6 +14,7 @@ func _ready():
 	add_to_group("zombies")
 	target_position = position
 	_start_idle_timer()
+	SoundManager.sound_emitted.connect(_on_sound_emitted)
 
 func _physics_process(_delta):
 	match state:
@@ -70,3 +71,9 @@ func _on_detection_area_body_exited(body):
 		state = State.IDLE
 		chase_target = null
 		_start_idle_timer()
+
+func _on_sound_emitted(sound_position, sound_radius):
+	if state == State.IDLE or state == State.SEARCHING:
+		if position.distance_to(sound_position) <= sound_radius:
+			state = State.SEARCHING
+			target_position = sound_position
