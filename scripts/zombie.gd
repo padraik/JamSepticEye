@@ -10,30 +10,12 @@ var state = State.IDLE
 var target_position = Vector2.ZERO
 var chase_target = null
 
-var _state_label
-
 func _ready():
 	add_to_group("zombies")
 	target_position = position
 	_start_idle_timer()
-	_create_debug_visuals()
-
-func _create_debug_visuals():
-	# Create the state label
-	_state_label = Label.new()
-	add_child(_state_label)
-	_state_label.position = Vector2(-25, -75)
-	
-	# Draw the detection radius
-	var detection_radius = $DetectionArea/CollisionShape2D.shape.radius
-	var points = PackedVector2Array()
-	for i in range(33):
-		var angle = i * (2 * PI / 32)
-		points.append(Vector2(cos(angle), sin(angle)) * detection_radius)
-	$DetectionRadiusVisual.polygon = points
 
 func _physics_process(delta):
-	_state_label.text = State.keys()[state]
 	match state:
 		State.IDLE:
 			velocity = Vector2.ZERO
