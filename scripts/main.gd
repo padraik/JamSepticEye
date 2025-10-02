@@ -8,13 +8,6 @@ const ZOMBIE_SCENE = preload("res://scenes/zombie.tscn")
 func _ready():
 	randomize()
 	
-	# Force window size for Mac - try multiple approaches
-	call_deferred("_set_window_size")
-	
-	# Also try setting it immediately
-	get_window().size = Vector2i(2560, 1440)
-	get_window().position = Vector2i(100, 100)
-	
 	var humans = get_tree().get_nodes_in_group("humans")
 	for human in humans:
 		human.conversion_complete.connect(_on_conversion_complete)
@@ -26,12 +19,6 @@ func _process(_delta):
 	var zombies = get_tree().get_nodes_in_group("zombies").size()
 	
 	ui.update_counts(humans - police, zombies, police)
-
-func _set_window_size():
-	# Try setting window size after everything is initialized
-	get_window().size = Vector2i(2560, 1440)
-	get_window().position = Vector2i(100, 100)
-	print("Window size set to: ", get_window().size)
 
 func _on_conversion_complete(person):
 	if person.is_queued_for_deletion():
