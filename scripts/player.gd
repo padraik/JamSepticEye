@@ -2,14 +2,45 @@ extends CharacterBody2D
 
 @export var speed = 300.0
 @onready var conversion_area = $ConversionArea
+@onready var animated_sprite = $AnimatedSprite2D
+
+var is_stabbing = false
+var stab_timer: Timer
+
+func _ready():
+	# Connect to animation finished signal
+	animated_sprite.animation_finished.connect(_on_animation_finished)
+	
+	# Create timer for stab animation
+	stab_timer = Timer.new()
+	stab_timer.wait_time = 2.0
+	stab_timer.one_shot = true
+	stab_timer.timeout.connect(_on_stab_timer_timeout)
+	add_child(stab_timer)
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
 	move_and_slide()
+	
+	# Handle animations based on movement (but don't override stab animation)
+	if not is_stabbing:
+		if direction.length() > 0:
+			# Player is moving - play run animation
+			if animated_sprite.animation != "run":
+				animated_sprite.play("run")
+		else:
+			# Player is not moving - play idle animation
+			if animated_sprite.animation != "idle":
+				animated_sprite.play("idle")
 
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):  # Enter key
+		print("Enter pressed, playing stab animation")
 		_attempt_conversion()
+		is_stabbing = true
+		animated_sprite.play("stab")
+		# Start timer as backup
+		stab_timer.start()
 
 func _attempt_conversion():
 	var bodies = conversion_area.get_overlapping_bodies()
@@ -25,3 +56,25 @@ func _attempt_conversion():
 	
 	if closest_body:
 		closest_body.infect()
+
+func _on_animation_finished():
+	# When stab animation finishes, return to appropriate movement animation
+	print("Animation finished: ", animated_sprite.animation)
+	if animated_sprite.animation == "stab":
+		print("Stab animation finished, returning to movement animation")
+		_return_to_movement_animation()
+
+func _on_stab_timer_timeout():
+	# Timer backup in case animation_finished doesn't fire
+	if is_stabbing:
+		print("Timer timeout - forcing return to movement animation")
+		_return_to_movement_animation()
+
+func _return_to_movement_animation():
+	is_stabbing = false
+	stab_timer.stop()
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if direction.length() > 0:
+		animated_sprite.play("run")
+	else:
+		animated_sprite.play("idle")
