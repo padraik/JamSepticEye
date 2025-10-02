@@ -23,10 +23,18 @@ func _physics_process(_delta):
 	velocity = direction * speed
 	move_and_slide()
 	
-	# Debug: Print current animation state every few frames
-	if Engine.get_process_frames() % 60 == 0:  # Print every 60 frames (about once per second)
-		print("Current animation: ", animated_sprite.animation, " is_stabbing: ", is_stabbing)
-	
+	update_animation(direction)
+	update_facing_direction(direction)
+
+	if Input.is_action_just_pressed("ui_accept"):  # Enter key
+		print("Enter pressed, playing stab animation")
+		_attempt_conversion()
+		is_stabbing = true
+		animated_sprite.play("stab")
+		# Start timer as backup
+		stab_timer.start()
+
+func update_animation(direction):
 	# Handle animations based on movement (but don't override stab animation)
 	if not is_stabbing:
 		if direction.length() > 0:
@@ -38,13 +46,15 @@ func _physics_process(_delta):
 			if animated_sprite.animation != "idle":
 				animated_sprite.play("idle")
 
-	if Input.is_action_just_pressed("ui_accept"):  # Enter key
-		print("Enter pressed, playing stab animation")
-		_attempt_conversion()
-		is_stabbing = true
-		animated_sprite.play("stab")
-		# Start timer as backup
-		stab_timer.start()
+func update_facing_direction(direction):
+	if direction.x < 0:
+		animated_sprite.flip_h = true
+	elif direction.x > 0:
+		animated_sprite.flip_h = false
+	
+	# Debug: Print current animation state every few frames
+	if Engine.get_process_frames() % 60 == 0:  # Print every 60 frames (about once per second)
+		print("Current animation: ", animated_sprite.animation, " is_stabbing: ", is_stabbing)
 
 func _attempt_conversion():
 	var bodies = conversion_area.get_overlapping_bodies()
