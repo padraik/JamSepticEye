@@ -14,8 +14,9 @@ func _ready():
 	add_to_group("zombies")
 	target_position = position
 	_start_idle_timer()
+	SoundManager.sound_emitted.connect(_on_sound_emitted)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match state:
 		State.IDLE:
 			velocity = Vector2.ZERO
@@ -32,8 +33,10 @@ func _physics_process(delta):
 			if is_instance_valid(chase_target):
 				var direction = position.direction_to(chase_target.position)
 				velocity = direction * speed * 1.5 # Chase faster than wandering
-				var collision = move_and_collide(velocity * delta)
-				if collision:
+				move_and_slide()
+				
+				for i in get_slide_collision_count():
+					var collision = get_slide_collision(i)
 					if collision.get_collider().is_in_group("humans"):
 						emit_signal("human_caught", collision.get_collider())
 			else:
@@ -68,3 +71,9 @@ func _on_detection_area_body_exited(body):
 		state = State.IDLE
 		chase_target = null
 		_start_idle_timer()
+
+func _on_sound_emitted(sound_position, sound_radius):
+	if state == State.IDLE or state == State.SEARCHING:
+		if position.distance_to(sound_position) <= sound_radius:
+			state = State.SEARCHING
+			target_position = sound_position
