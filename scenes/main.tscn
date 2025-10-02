@@ -4749,18 +4749,8 @@ color = Color(0.8, 0.1, 0.1, 1)
 visible = false
 position = Vector2(512, 300)
 
-[node name="Human1" parent="." instance=ExtResource("3_xyz")]
-visible = false
-position = Vector2(200, 200)
-
-[node name="Human2" parent="." instance=ExtResource("3_xyz")]
-visible = false
-position = Vector2(827, 198)
-
-[node name="Human3" parent="." instance=ExtResource("3_xyz")]
-visible = false
-position = Vector2(500, 500)
+[node name="Human" parent="." instance=ExtResource("3_xyz")]
+position = Vector2(1005, 1073)
 
 [node name="Zombie" parent="." instance=ExtResource("4_uvw")]
-visible = false
-position = Vector2(50, 50)
+position = Vector2(665, 1389)
