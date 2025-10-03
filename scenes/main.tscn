@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://cgrg8a0vj8vfg"]
+[gd_scene load_steps=8 format=4 uid="uid://cgrg8a0vj8vfg"]
 
 [ext_resource type="Script" uid="uid://vtavtyu6dmbn" path="res://scripts/main.gd" id="1_jg0ve"]
 [ext_resource type="PackedScene" uid="uid://b5w5d0f6v7q0h" path="res://scenes/player.tscn" id="2_abcde"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6g25npt406j7" path="res://scenes/zombie.tscn" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://lcfxothp2kgy" path="res://scenes/ui.tscn" id="6_abcde"]
 [ext_resource type="PackedScene" uid="uid://b6oqvjg3p0k2v" path="res://scenes/police_officer.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://d1c2b3a4e5f6" path="res://scenes/human.tscn" id="7_o6xl0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jg0ve")
@@ -34,7 +35,10 @@ position = Vector2(855, 324)
 [node name="HUD" parent="GameUI" instance=ExtResource("6_abcde")]
 
 [node name="Zombie" parent="." instance=ExtResource("5_tefeu")]
-position = Vector2(839, 261)
+position = Vector2(644, 271)
 
 [node name="PoliceOfficer" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(1073, 168)
+position = Vector2(789, 16)
+
+[node name="Human" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(610, 116)
