@@ -3,6 +3,7 @@ extends "res://scripts/person.gd"
 const FLEEING = 3
 
 var flee_target = null
+@onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	super()
@@ -27,6 +28,9 @@ func _physics_process(delta):
 			_start_idle_timer()
 	else:
 		super(delta)
+	
+	# Update animations
+	_update_animation()
 
 func _scan_for_targets():
 	var bodies = $DetectionArea.get_overlapping_bodies()
@@ -43,3 +47,22 @@ func _on_flee_cooldown_timer_timeout():
 	state = IDLE
 	flee_target = null
 	_start_idle_timer()
+
+func _update_animation():
+	# Handle animations based on state and movement
+	if state == FLEEING:
+		# When fleeing, always play run animation
+		if animated_sprite.animation != "run":
+			animated_sprite.play("run")
+	elif state == WANDER and velocity.length() > 0:
+		# When wandering and moving, play run animation
+		if animated_sprite.animation != "run":
+			animated_sprite.play("run")
+	elif state == IDLE:
+		# When idle, play idle animation
+		if animated_sprite.animation != "idle":
+			animated_sprite.play("idle")
+	elif state == INFECTED:
+		# When infected, play die animation
+		if animated_sprite.animation != "die":
+			animated_sprite.play("die")

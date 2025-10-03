@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 enum State { IDLE, SEARCHING, CHASING, DOWN }
 
-@onready var animator = $ZombieAnimator
+@onready var animated_sprite = $AnimatedSprite2D
 @onready var state_label = $StateLabel
 
 var state = State.IDLE:
@@ -13,8 +13,7 @@ var state = State.IDLE:
 		if state == new_state:
 			return
 		state = new_state
-		if animator:
-			animator.update_animation(state)
+		_update_animation()
 		if state_label:
 			state_label.text = State.keys()[new_state].to_upper()
 
@@ -60,6 +59,9 @@ func _physics_process(_delta):
 		State.DOWN:
 			velocity = Vector2.ZERO
 			move_and_slide()
+	
+	# Update movement animations
+	_update_movement_animation()
 
 func _pick_new_wander_destination():
 	var random_offset = Vector2(randf_range(-wander_range, wander_range), randf_range(-wander_range, wander_range))
@@ -120,3 +122,28 @@ func has_line_of_sight(target):
 	query.exclude = [self]
 	var result = space_state.intersect_ray(query)
 	return result.is_empty()
+
+func _update_animation():
+	# Handle state-based animations
+	match state:
+		State.IDLE:
+			if animated_sprite.animation != "idle":
+				animated_sprite.play("idle")
+		State.SEARCHING:
+			if animated_sprite.animation != "run":
+				animated_sprite.play("run")
+		State.CHASING:
+			if animated_sprite.animation != "run":
+				animated_sprite.play("run")
+		State.DOWN:
+			if animated_sprite.animation != "die":
+				animated_sprite.play("die")
+
+func _update_movement_animation():
+	# Handle movement-based animations (override state animations when moving)
+	if velocity.length() > 0 and state != State.DOWN:
+		if animated_sprite.animation != "run":
+			animated_sprite.play("run")
+	elif state == State.IDLE and velocity.length() == 0:
+		if animated_sprite.animation != "idle":
+			animated_sprite.play("idle")

@@ -21,7 +21,7 @@ func _physics_process(delta):
 		move_and_slide()
 		# Play attack animation when firing
 		if is_instance_valid(kill_target) and can_fire:
-			animated_sprite.play("stab")
+			animated_sprite.play("attack")
 		else:
 			animated_sprite.play("idle")
 		

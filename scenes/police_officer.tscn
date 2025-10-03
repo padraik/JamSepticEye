@@ -1,223 +1,52 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6oqvjg3p0k2v"]
+[gd_scene load_steps=13 format=3 uid="uid://b6oqvjg3p0k2v"]
 
 [ext_resource type="Script" uid="uid://cu7xi0mgq8rib" path="res://scripts/police_officer.gd" id="1_ghijk"]
-[ext_resource type="Texture2D" uid="uid://c3police_sprite" path="res://assets/police-spritesheet.png" id="2_police_sprite"]
+[ext_resource type="Texture2D" uid="uid://7fskbmllqx7m" path="res://assets/police-spritesheet.png" id="2_police_sprite"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxqex"]
+atlas = ExtResource("2_police_sprite")
+region = Rect2(480, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rignx"]
+atlas = ExtResource("2_police_sprite")
+region = Rect2(384, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbn0j"]
+atlas = ExtResource("2_police_sprite")
+region = Rect2(768, 512, 96, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
 atlas = ExtResource("2_police_sprite")
 region = Rect2(0, 0, 96, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hyfe"]
 atlas = ExtResource("2_police_sprite")
-region = Rect2(96, 0, 96, 128)
+region = Rect2(576, 256, 96, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf217"]
 atlas = ExtResource("2_police_sprite")
-region = Rect2(192, 0, 96, 128)
+region = Rect2(672, 256, 96, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4228i"]
 atlas = ExtResource("2_police_sprite")
-region = Rect2(288, 0, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle5"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(384, 0, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle6"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(480, 0, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle7"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(576, 0, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle8"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(672, 0, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle9"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(768, 0, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run1"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(0, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run2"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(96, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run3"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(192, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run4"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(288, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run5"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(384, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run6"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(480, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run7"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(576, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run8"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(672, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run9"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(768, 128, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_stab1"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(0, 256, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_stab2"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(96, 256, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_stab3"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(192, 256, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_stab4"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(288, 256, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_die1"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(0, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_die2"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(96, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_die3"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(192, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_die4"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(288, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sneak1"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(0, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sneak2"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(96, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sneak3"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(192, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sneak4"]
-atlas = ExtResource("2_police_sprite")
-region = Rect2(288, 512, 96, 128)
+region = Rect2(768, 256, 96, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_police"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle9")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run9")
-}],
-"loop": true,
-"name": &"run",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_stab1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_stab2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_stab3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_stab4")
+"texture": SubResource("AtlasTexture_lxqex")
 }],
 "loop": false,
-"name": &"stab",
+"name": &"attack",
 "speed": 0.1
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_die1")
+"texture": SubResource("AtlasTexture_rignx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_die2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_die3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_die4")
+"texture": SubResource("AtlasTexture_fbn0j")
 }],
 "loop": false,
 "name": &"die",
@@ -225,40 +54,46 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sneak1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sneak2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sneak3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sneak4")
+"texture": SubResource("AtlasTexture_idle1")
 }],
-"loop": false,
-"name": &"sneak",
-"speed": 1.0
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hyfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf217")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4228i")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67890"]
-radius = 29.0
-height = 64.0
+radius = 30.0
+height = 74.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqrst"]
-radius = 300.0
+radius = 53.0
 
 [node name="PoliceOfficer" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_ghijk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.5, 1, 0.5, 1)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-0.5, -3)
+scale = Vector2(0.59375, 0.59375)
 sprite_frames = SubResource("SpriteFrames_police")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_67890")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -266,6 +101,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_pqrst")
 
 [node name="WanderTimer" type="Timer" parent="."]

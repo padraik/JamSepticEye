@@ -1,26 +1,87 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1c2b3a4e5f6"]
+[gd_scene load_steps=12 format=3 uid="uid://d1c2b3a4e5f6"]
 
-[ext_resource type="Script" path="res://scripts/human.gd" id="1_ghijk"]
-[ext_resource type="Texture2D" path="res://icon.svg" id="2_lmnop"]
+[ext_resource type="Script" uid="uid://c4s8sg4f7vsw1" path="res://scripts/human.gd" id="1_ghijk"]
+[ext_resource type="Texture2D" uid="uid://cpd245bqvf4o4" path="res://assets/human-1-spritesheet.png" id="2_human_sprite"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwf78"]
+atlas = ExtResource("2_human_sprite")
+region = Rect2(96, 128, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4otcn"]
+atlas = ExtResource("2_human_sprite")
+region = Rect2(768, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
+atlas = ExtResource("2_human_sprite")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mayv3"]
+atlas = ExtResource("2_human_sprite")
+region = Rect2(576, 256, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_denma"]
+atlas = ExtResource("2_human_sprite")
+region = Rect2(672, 256, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7jhf"]
+atlas = ExtResource("2_human_sprite")
+region = Rect2(768, 256, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_human"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwf78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4otcn")
+}],
+"loop": false,
+"name": &"die",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mayv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_denma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7jhf")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67890"]
-radius = 29.0
-height = 64.0
+radius = 25.0
+height = 72.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqrst"]
-radius = 150.0
+radius = 58.0
 
 [node name="Human" type="CharacterBody2D"]
-collision_layer = 1
 collision_mask = 7
 script = ExtResource("1_ghijk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-modulate = Color(0.5, 0.5, 1, 1)
-texture = ExtResource("2_lmnop")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.9604645e-07, 0.333336)
+scale = Vector2(0.6458333, 0.6458334)
+sprite_frames = SubResource("SpriteFrames_human")
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_67890")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -28,6 +89,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_pqrst")
 
 [node name="WanderTimer" type="Timer" parent="."]
@@ -43,6 +105,6 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="timeout" from="FleeCooldownTimer" to="." method="_on_flee_cooldown_timer_timeout"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="FleeCooldownTimer" to="." method="_on_flee_cooldown_timer_timeout"]
 [connection signal="timeout" from="ConversionTimer" to="." method="_on_conversion_timer_timeout"]
