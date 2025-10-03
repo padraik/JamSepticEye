@@ -51,10 +51,6 @@ func update_facing_direction(direction):
 		animated_sprite.flip_h = true
 	elif direction.x > 0:
 		animated_sprite.flip_h = false
-	
-	# Debug: Print current animation state every few frames
-	if Engine.get_process_frames() % 60 == 0:  # Print every 60 frames (about once per second)
-		print("Current animation: ", animated_sprite.animation, " is_stabbing: ", is_stabbing)
 
 func _attempt_conversion():
 	var bodies = conversion_area.get_overlapping_bodies()
