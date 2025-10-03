@@ -5,6 +5,7 @@ const PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
 
 var kill_target = null
 var can_fire = true
+@onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	super()
@@ -18,6 +19,12 @@ func _physics_process(delta):
 	if state == KILL:
 		velocity = Vector2.ZERO
 		move_and_slide()
+		# Play attack animation when firing
+		if is_instance_valid(kill_target) and can_fire:
+			animated_sprite.play("stab")
+		else:
+			animated_sprite.play("idle")
+		
 		if is_instance_valid(kill_target):
 			if kill_target.is_down():
 				state = WANDER
@@ -31,6 +38,8 @@ func _physics_process(delta):
 			_pick_new_wander_destination()
 	else:
 		super(delta)
+		# Handle movement animations
+		_update_animation()
 
 func _fire_projectile():
 	if not has_line_of_sight(kill_target):
@@ -65,3 +74,15 @@ func _on_detection_area_body_exited(body):
 
 func _on_fire_rate_timer_timeout():
 	can_fire = true
+
+func _update_animation():
+	# Handle movement animations based on state and velocity
+	if state == WANDER and velocity.length() > 0:
+		if animated_sprite.animation != "run":
+			animated_sprite.play("run")
+	elif state == IDLE:
+		if animated_sprite.animation != "idle":
+			animated_sprite.play("idle")
+	elif state == INFECTED:
+		if animated_sprite.animation != "die":
+			animated_sprite.play("die")

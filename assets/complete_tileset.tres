@@ -126,6 +126,7 @@ texture_region_size = Vector2i(94, 94)
 1:6/0 = 0
 1:6/0/terrain_set = 0
 1:6/0/terrain = 3
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-29.325989, -0.25299072, -29.875977, 36.597, 29.523987, 37.697006, 29.523987, -36.00299, -30.426025, -36.00299)
 1:7/0 = 0
 1:7/0/terrain_set = 0
 1:7/0/terrain = 3
@@ -221,6 +222,9 @@ texture_region_size = Vector2i(94, 94)
 6:3/0 = 0
 6:3/0/terrain_set = 0
 6:3/0/terrain = 2
+7:7/0 = 0
+7:7/0/terrain_set = 0
+7:7/0/terrain = 2
 
 [resource]
 tile_size = Vector2i(94, 94)
