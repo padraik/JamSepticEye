@@ -7,6 +7,7 @@ var flee_target = null
 
 func _ready():
 	super()
+	add_to_group("humans")
 	state = IDLE
 
 func _physics_process(delta):
@@ -31,6 +32,13 @@ func _physics_process(delta):
 	
 	# Update animations
 	_update_animation()
+	update_facing_direction()
+
+func update_facing_direction():
+	if velocity.x < 0:
+		animated_sprite.flip_h = true
+	elif velocity.x > 0:
+		animated_sprite.flip_h = false
 
 func _scan_for_targets():
 	var bodies = $DetectionArea.get_overlapping_bodies()
