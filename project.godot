@@ -24,7 +24,6 @@ SoundManager="*res://scripts/sound_manager.gd"
 window/size/viewport_width=1024
 window/size/viewport_height=600
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 display/window/dpi/allow_hidpi=true
 
 [input]
@@ -54,6 +53,7 @@ move_right={
 
 2d_physics/layer_1="humans"
 2d_physics/layer_2="zombies"
+2d_physics/layer_3="walls"
 
 [rendering]
 

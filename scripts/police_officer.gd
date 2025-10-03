@@ -12,6 +12,9 @@ func _ready():
 	state = IDLE
 
 func _physics_process(delta):
+	if state == IDLE or state == WANDER:
+		_scan_for_targets()
+
 	if state == KILL:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -30,6 +33,9 @@ func _physics_process(delta):
 		super(delta)
 
 func _fire_projectile():
+	if not has_line_of_sight(kill_target):
+		return # Lost line of sight, can't fire
+
 	can_fire = false
 	SoundManager.emit_sound(position, 1200.0)
 	var projectile = PROJECTILE_SCENE.instantiate()
@@ -37,15 +43,19 @@ func _fire_projectile():
 	projectile.target_position = kill_target.position
 	get_parent().add_child(projectile)
 	$FireRateTimer.start()
-
-func _on_detection_area_body_entered(body):
-	if body.is_in_group("zombies"):
-		if body.is_down():
-			return
-		if not is_instance_valid(kill_target):
-			state = KILL
-			kill_target = body
-			$WanderTimer.stop()
+	
+func _scan_for_targets():
+	var bodies = $DetectionArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("zombies"):
+			if has_line_of_sight(body):
+				if not is_instance_valid(kill_target):
+					if body.is_down():
+						return
+					state = KILL
+					kill_target = body
+					$WanderTimer.stop()
+					return
 
 func _on_detection_area_body_exited(body):
 	if body == kill_target:

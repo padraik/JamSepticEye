@@ -60,3 +60,10 @@ func _on_wander_timer_timeout():
 
 func _on_conversion_timer_timeout():
 	emit_signal("conversion_complete", self)
+
+func has_line_of_sight(target):
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, target.global_position, 4) # 4 is the mask for layer 3, "walls"
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	return result.is_empty()

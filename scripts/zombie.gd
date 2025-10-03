@@ -26,9 +26,11 @@ func _ready():
 	target_position = position
 	_start_idle_timer()
 	SoundManager.sound_emitted.connect(_on_sound_emitted)
-	animator.update_animation(state)
 
 func _physics_process(_delta):
+	if state == State.IDLE or state == State.SEARCHING:
+		_scan_for_targets()
+
 	match state:
 		State.IDLE:
 			velocity = Vector2.ZERO
@@ -39,7 +41,7 @@ func _physics_process(_delta):
 				velocity = direction * speed
 				move_and_slide()
 			else:
-				state = State.IDLE
+				self.state = State.IDLE
 				_start_idle_timer()
 		State.CHASING:
 			if is_instance_valid(chase_target):
@@ -52,7 +54,7 @@ func _physics_process(_delta):
 					if collision.get_collider().is_in_group("humans"):
 						collision.get_collider().infect()
 			else:
-				state = State.IDLE
+				self.state = State.IDLE
 				chase_target = null
 				_start_idle_timer()
 		State.DOWN:
@@ -73,28 +75,19 @@ func _start_idle_timer():
 
 func _on_wander_timer_timeout():
 	if state == State.IDLE:
-		state = State.SEARCHING
+		self.state = State.SEARCHING
 		_pick_new_wander_destination()
-
-func _on_detection_area_body_entered(body):
-	if state == State.DOWN:
-		return
-	if body.is_in_group("humans"):
-		if chase_target == null:
-			state = State.CHASING
-			chase_target = body
-			$WanderTimer.stop()
 
 func _on_detection_area_body_exited(body):
 	if state == State.DOWN:
 		return
 	if body == chase_target:
-		state = State.IDLE
+		self.state = State.IDLE
 		chase_target = null
 		_start_idle_timer()
 
 func go_down():
-	state = State.DOWN
+	self.state = State.DOWN
 	$CollisionShape2D.disabled = true
 	$DetectionArea/CollisionShape2D.disabled = true
 	$WanderTimer.stop()
@@ -107,5 +100,23 @@ func _on_sound_emitted(sound_position, sound_radius):
 		return
 	if state == State.IDLE or state == State.SEARCHING:
 		if position.distance_to(sound_position) <= sound_radius:
-			state = State.SEARCHING
+			self.state = State.SEARCHING
 			target_position = sound_position
+
+func _scan_for_targets():
+	var bodies = $DetectionArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("humans") or body.is_in_group("police"):
+			if has_line_of_sight(body):
+				if not is_instance_valid(chase_target):
+					self.state = State.CHASING
+					chase_target = body
+					$WanderTimer.stop()
+					return
+
+func has_line_of_sight(target):
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, target.global_position, 4) # 4 is the mask for layer 3, "walls"
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	return result.is_empty()

@@ -9,17 +9,16 @@ func _ready():
 	state = IDLE
 
 func _physics_process(delta):
+	if state == IDLE or state == WANDER:
+		_scan_for_targets()
+
 	if state == FLEEING:
 		if is_instance_valid(flee_target):
 			var direction = flee_target.position.direction_to(position)
 			velocity = direction * speed * 1.5 # Flee faster than wandering
 			move_and_slide()
 			
-			var zombie_detection_area = flee_target.get_node("DetectionArea")
-			if self in zombie_detection_area.get_overlapping_bodies():
-				if not $FleeCooldownTimer.is_stopped():
-					$FleeCooldownTimer.stop()
-			else:
+			if not flee_target in $DetectionArea.get_overlapping_bodies():
 				if $FleeCooldownTimer.is_stopped():
 					$FleeCooldownTimer.start()
 		else:
@@ -29,14 +28,16 @@ func _physics_process(delta):
 	else:
 		super(delta)
 
-func _on_detection_area_body_entered(body):
-	if body.is_in_group("zombies"):
-		if body.is_down():
-			return
-		if not is_instance_valid(flee_target): # Only acquire a new target if not already fleeing
-			state = FLEEING
-			flee_target = body
-			$WanderTimer.stop()
+func _scan_for_targets():
+	var bodies = $DetectionArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("zombies"):
+			if has_line_of_sight(body):
+				if not is_instance_valid(flee_target):
+					state = FLEEING
+					flee_target = body
+					$WanderTimer.stop()
+					return
 
 func _on_flee_cooldown_timer_timeout():
 	state = IDLE

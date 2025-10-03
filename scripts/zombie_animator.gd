@@ -15,6 +15,7 @@ func _ready():
 		2: chase_sprite, # CHASING
 		3: down_sprite # DOWN
 	}
+	update_animation(0) # Set initial state to IDLE
 
 func update_animation(state):
 	for s in sprites.values():
