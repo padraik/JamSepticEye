@@ -11,6 +11,9 @@ func _ready():
 	# Connect to animation finished signal
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	
+	# Ensure the player can collide with walls
+	collision_mask = 7
+	
 	# Create timer for stab animation
 	stab_timer = Timer.new()
 	stab_timer.wait_time = 0.5  # Half second for faster stab animation

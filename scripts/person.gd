@@ -34,6 +34,14 @@ func _physics_process(_delta):
 		INFECTED:
 			velocity = Vector2.ZERO
 			move_and_slide()
+	
+	update_facing_direction()
+
+func update_facing_direction():
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
 
 func _pick_new_wander_destination():
 	var random_offset = Vector2(randf_range(-wander_range, wander_range), randf_range(-wander_range, wander_range))

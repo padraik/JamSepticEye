@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5w5d0f6v7q0h" path="res://scenes/player.tscn" id="2_abcde"]
 [ext_resource type="TileSet" uid="uid://cvqa3a3e4wh1b" path="res://assets/complete_tileset.tres" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b6oqvjg3p0k2v" path="res://scenes/police_officer.tscn" id="5_tbgi4"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="6_abcde"]
+[ext_resource type="PackedScene" uid="uid://lcfxothp2kgy" path="res://scenes/ui.tscn" id="6_abcde"]
 [ext_resource type="PackedScene" uid="uid://c6g25npt406j7" path="res://scenes/zombie.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://d1c2b3a4e5f6" path="res://scenes/human.tscn" id="7_o6xl0"]
 
@@ -29,6 +29,7 @@ tile_set = ExtResource("3_jyhfs")
 
 [node name="Player" parent="." instance=ExtResource("2_abcde")]
 position = Vector2(855, 324)
+collision_layer = 2
 collision_mask = 1
 
 [node name="GameUI" type="CanvasLayer" parent="."]
@@ -36,10 +37,10 @@ collision_mask = 1
 [node name="HUD" parent="GameUI" instance=ExtResource("6_abcde")]
 
 [node name="PoliceOfficer" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(982, 226)
+position = Vector2(1288, 240)
 
 [node name="Zombie" parent="." instance=ExtResource("6_tefeu")]
-position = Vector2(866, 229)
+position = Vector2(988, 126)
 collision_mask = 1
 
 [node name="Human" parent="." instance=ExtResource("7_o6xl0")]

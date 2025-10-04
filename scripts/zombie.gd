@@ -62,6 +62,13 @@ func _physics_process(_delta):
 	
 	# Update movement animations
 	_update_movement_animation()
+	update_facing_direction()
+
+func update_facing_direction():
+	if velocity.x < 0:
+		animated_sprite.flip_h = true
+	elif velocity.x > 0:
+		animated_sprite.flip_h = false
 
 func _pick_new_wander_destination():
 	var random_offset = Vector2(randf_range(-wander_range, wander_range), randf_range(-wander_range, wander_range))
