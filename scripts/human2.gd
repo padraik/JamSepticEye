@@ -74,3 +74,4 @@ func _update_animation():
 		# When infected, play die animation
 		if animated_sprite.animation != "die":
 			animated_sprite.play("die")
+

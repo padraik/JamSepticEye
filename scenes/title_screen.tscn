@@ -56,3 +56,4 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_button")
 text = "PLAY!"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://lcfxothp2kgy"]
+[gd_scene load_steps=3 format=3 uid="uid://ddirnhlwtjk4x"]
 
-[ext_resource type="Script" path="res://scripts/ui.gd" id="1_abcde"]
+[ext_resource type="Script" uid="uid://bkys8f4l1lyh7" path="res://scripts/ui.gd" id="1_abcde"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backdrop"]
+bg_color = Color(0, 0, 0, 0.8)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -11,22 +14,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_abcde")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HudPanel" type="Panel" parent="."]
+layout_direction = 2
 layout_mode = 0
-offset_right = 150.0
-offset_bottom = 70.0
+offset_right = 1026.0
+offset_bottom = 45.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_backdrop")
 
-[node name="HumansLabel" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HudPanel"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 535.0
+offset_bottom = 38.0
+theme_override_constants/separation = 36
+
+[node name="HumansLabel" type="Label" parent="HudPanel/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Humans: 0"
 
-[node name="ZombiesLabel" type="Label" parent="VBoxContainer"]
+[node name="PoliceLabel" type="Label" parent="HudPanel/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Zombies: 0"
-
-[node name="PoliceLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Police Officers: 0"
+
+[node name="ZombiesLabel" type="Label" parent="HudPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Zombies: 0"
