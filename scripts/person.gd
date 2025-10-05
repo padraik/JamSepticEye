@@ -14,6 +14,10 @@ var state = IDLE
 var target_position = Vector2.ZERO
 var map_rect = Rect2()
 
+var stuck_timer = 0.0
+const STUCK_THRESHOLD_WALL = 1.5
+const STUCK_THRESHOLD_NPC = 0.5
+
 func _ready():
 	call_deferred("_initialize_map_boundaries")
 	rng.randomize()
@@ -39,11 +43,39 @@ func _physics_process(_delta):
 		IDLE:
 			velocity = Vector2.ZERO
 			move_and_slide()
+			stuck_timer = 0.0
 		WANDER:
 			if global_position.distance_to(target_position) > 5.0:
 				var direction = global_position.direction_to(target_position)
 				velocity = direction * speed
+
+				var position_before_move = global_position
 				move_and_slide()
+
+				var stuck_threshold = STUCK_THRESHOLD_WALL
+				var is_stuck_on_npc = false
+				var collider = null
+
+				if get_slide_collision_count() > 0:
+					var collision = get_slide_collision(0)
+					collider = collision.get_collider()
+					if collider.is_in_group("humans") or collider.is_in_group("police") or collider.is_in_group("zombies"):
+						stuck_threshold = STUCK_THRESHOLD_NPC
+						is_stuck_on_npc = true
+				
+				var distance_moved = position_before_move.distance_to(global_position)
+
+				if distance_moved < 0.1:
+					stuck_timer += _delta
+					if stuck_timer > stuck_threshold:
+						stuck_timer = 0.0
+						if is_stuck_on_npc and is_instance_valid(collider):
+							_pick_evasive_destination(collider)
+						else:
+							state = IDLE
+							_start_idle_timer()
+				else:
+					stuck_timer = 0.0
 			else:
 				state = IDLE
 				velocity = Vector2.ZERO
@@ -59,6 +91,19 @@ func update_facing_direction():
 		$AnimatedSprite2D.flip_h = true
 	elif velocity.x > 0:
 		$AnimatedSprite2D.flip_h = false
+
+func _pick_evasive_destination(obstacle):
+	var away_direction = obstacle.global_position.direction_to(global_position)
+	var random_angle = rng.randf_range(-PI / 4, PI / 4) # -45 to +45 degrees
+	var evasive_direction = away_direction.rotated(random_angle)
+	
+	target_position = global_position + evasive_direction * (wander_range / 2)
+	
+	# Clamp to map boundaries
+	target_position.x = clamp(target_position.x, map_rect.position.x, map_rect.end.x)
+	target_position.y = clamp(target_position.y, map_rect.position.y, map_rect.end.y)
+	
+	state = WANDER
 
 func _pick_new_wander_destination():
 	if map_rect.size == Vector2.ZERO:
