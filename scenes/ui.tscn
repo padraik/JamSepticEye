@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddirnhlwtjk4x"]
+[gd_scene load_steps=4 format=3 uid="uid://ddirnhlwtjk4x"]
 
 [ext_resource type="Script" uid="uid://bkys8f4l1lyh7" path="res://scripts/ui.gd" id="1_abcde"]
+[ext_resource type="FontFile" uid="uid://chuxdipbicwuu" path="res://assets/fonts/Krungthep.ttf" id="2_font"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backdrop"]
 bg_color = Color(0, 0, 0, 0.8)
@@ -34,6 +35,7 @@ theme_override_constants/separation = 36
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 24
 text = "Humans: 0"
 
@@ -41,6 +43,7 @@ text = "Humans: 0"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 24
 text = "Police Officers: 0"
 
@@ -48,5 +51,6 @@ text = "Police Officers: 0"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 24
 text = "Zombies: 0"

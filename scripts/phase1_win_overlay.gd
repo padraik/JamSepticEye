@@ -9,7 +9,7 @@ func _ready():
 	timer.start()
 
 func _on_timer_timeout():
-	# After displaying the win screen, go back to title. Adjust if needed.
+	# After the win screen, continue to Phase 2 main scene
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
+	get_tree().change_scene_to_file("res://scenes/phase2_main.tscn")
 

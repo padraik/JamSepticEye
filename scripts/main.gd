@@ -30,6 +30,12 @@ func _process(_delta):
 	if humans - police <= 0 and police <= 0:
 		_trigger_phase1_win()
 
+func _unhandled_input(event):
+	# Debug: Press 'P' to instantly win Phase 1
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_P:
+			_trigger_phase1_win()
+
 func _on_conversion_complete(person):
 	if person.is_queued_for_deletion():
 		return
