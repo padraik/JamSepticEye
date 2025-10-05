@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://beuv5ppl7tb6p"]
+[gd_scene load_steps=5 format=3 uid="uid://beuv5ppl7tb6p"]
 
 [ext_resource type="Script" uid="uid://drqn310gbqwpp" path="res://scripts/title_screen.gd" id="1_title_script"]
 [ext_resource type="Texture2D" uid="uid://beb80valvo3gu" path="res://assets/screens/title-screen.png" id="2_title_image"]
+[ext_resource type="FontFile" path="res://assets/fonts/Krungthep.ttf" id="3_font"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
 bg_color = Color(0.54509807, 0.7529412, 0.5411765, 1)
-border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
@@ -48,12 +48,13 @@ offset_right = 103.0
 offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 42
+theme_override_fonts/font = ExtResource("3_font")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button")
 text = "PLAY!"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-
