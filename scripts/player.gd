@@ -8,11 +8,9 @@ var is_stabbing = false
 var stab_timer: Timer
 
 func _ready():
+	add_to_group("player")
 	# Connect to animation finished signal
 	animated_sprite.animation_finished.connect(_on_animation_finished)
-	
-	# Ensure the player can collide with walls
-	collision_mask = 7
 	
 	# Create timer for stab animation
 	stab_timer = Timer.new()

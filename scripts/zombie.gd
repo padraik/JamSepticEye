@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 60.0
+@export var speed = 110.0
 @export var wander_range = 150
 
 enum State { IDLE, SEARCHING, CHASING, DOWN }
@@ -190,6 +190,9 @@ func _on_detection_area_body_exited(body):
 
 func go_down():
 	self.state = State.DOWN
+	z_index = -1
+	collision_layer = 0
+	collision_mask = 0
 	$CollisionShape2D.disabled = true
 	$DetectionArea/CollisionShape2D.disabled = true
 	$WanderTimer.stop()
