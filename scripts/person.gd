@@ -124,8 +124,6 @@ func _pick_new_wander_destination():
 			rng.randf_range(min_x, max_x),
 			rng.randf_range(min_y, max_y)
 		)
-	
-	print("New wander destination for ", name, ": from ", global_position, " to ", target_position)
 
 func _start_idle_timer():
 	$WanderTimer.wait_time = randf_range(1.0, 2.0)

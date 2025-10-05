@@ -210,6 +210,18 @@ func _on_sound_emitted(sound_position, sound_radius):
 
 func _scan_for_targets():
 	var bodies = $DetectionArea.get_overlapping_bodies()
+	
+	# Prioritize the player
+	for body in bodies:
+		if body.is_in_group("player"):
+			if has_line_of_sight(body):
+				if not is_instance_valid(chase_target):
+					self.state = State.CHASING
+					chase_target = body
+					$WanderTimer.stop()
+					return
+	
+	# If player not found or not visible, scan for others
 	for body in bodies:
 		if body.is_in_group("humans") or body.is_in_group("police"):
 			if has_line_of_sight(body):
@@ -224,6 +236,10 @@ func has_line_of_sight(target):
 	var query = PhysicsRayQueryParameters2D.create(global_position, target.global_position, 4) # 4 is the mask for layer 3, "walls"
 	query.exclude = [self]
 	var result = space_state.intersect_ray(query)
+
+	if not result.is_empty():
+		print_debug("Line of sight from ", name, " to ", target.name, " is blocked by: ", result.collider.name)
+
 	return result.is_empty()
 
 func _update_animation():

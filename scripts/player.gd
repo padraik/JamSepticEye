@@ -9,6 +9,7 @@ var stab_timer: Timer
 
 func _ready():
 	add_to_group("player")
+	print_debug("Player spawned. Layer: ", collision_layer, ", Mask: ", collision_mask)
 	# Connect to animation finished signal
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	

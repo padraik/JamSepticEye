@@ -1,7 +1,10 @@
 extends Area2D
 
 var target_position = Vector2.ZERO
-const SPEED = 1000.0
+const SPEED = 1500.0
+
+func _ready():
+	$LifespanTimer.start()
 
 func _physics_process(delta):
 	var direction = position.direction_to(target_position)
@@ -16,3 +19,6 @@ func _on_body_entered(body):
 		else:
 			print("Zombie hit! Roll: ", roll, " - FAILED, zombie survives.")
 		queue_free() # Destroy the projectile
+
+func _on_lifespan_timer_timeout():
+	queue_free()
