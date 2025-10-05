@@ -5,8 +5,8 @@ func _ready():
 	$PlayButton.grab_focus()
 
 func _on_play_button_pressed():
-	# Load the main game scene
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	# Load the story screen first
+	get_tree().change_scene_to_file("res://scenes/story_screen.tscn")
 
 func _input(event):
 	# Allow Enter key to start the game
