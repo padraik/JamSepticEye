@@ -116,8 +116,11 @@ func _physics_process(_delta):
 				
 				for i in get_slide_collision_count():
 					var collision = get_slide_collision(i)
-					if collision.get_collider().is_in_group("humans"):
-						collision.get_collider().infect()
+					collider = collision.get_collider()
+					if collider.is_in_group("humans"):
+						collider.infect()
+					if collider.is_in_group("player"):
+						GameEvents.emit_signal("player_caught", self, collider)
 			else:
 				self.state = State.IDLE
 				chase_target = null

@@ -3,11 +3,14 @@ extends Node2D
 const ZOMBIE_SCENE = preload("res://scenes/zombie.tscn")
 const PHASE1_OVERLAY_SCENE = preload("res://scenes/phase1_overlay.tscn")
 const PHASE1_WIN_OVERLAY_SCENE = preload("res://scenes/phase1_win_overlay.tscn")
+const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
 
 @onready var ui = $GameUI/HUD
+var game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameEvents.player_caught.connect(_on_player_caught)
 	randomize()
 	
 	var humans = get_tree().get_nodes_in_group("humans")
@@ -55,3 +58,32 @@ func _trigger_phase1_win():
 	_win_triggered = true
 	var overlay = PHASE1_WIN_OVERLAY_SCENE.instantiate()
 	add_child(overlay)
+
+func _on_player_caught(zombie, player):
+	if game_over:
+		return
+	game_over = true
+	
+	# 1 - Pause all characters
+	get_tree().call_group("humans", "set_physics_process", false)
+	get_tree().call_group("police", "set_physics_process", false)
+	get_tree().call_group("zombies", "set_physics_process", false)
+	player.set_physics_process(false)
+	
+	# 2 - Tween the camera
+	var camera = player.get_node("Camera2D")
+	var tween = get_tree().create_tween()
+	var target_pos = (zombie.global_position + player.global_position) / 2
+	
+	tween.tween_property(camera, "global_position", target_pos, 1.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera, "zoom", Vector2(1.5, 1.5), 1.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	
+	await tween.finished
+	
+	# 3 - Display the game over screen
+	var game_over_screen = GAME_OVER_SCENE.instantiate()
+	add_child(game_over_screen)
+	
+	# 4 - Wait and restart
+	await get_tree().create_timer(5.0).timeout
+	get_tree().reload_current_scene()
