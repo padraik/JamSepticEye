@@ -15,7 +15,7 @@ func _ready():
 	win_screen.visible = false
 	news_screen_active = true
 	
-	timer.wait_time = 10.0
+	timer.wait_time = 5.0
 	timer.start()
 
 func _unhandled_input(event):
@@ -29,7 +29,8 @@ func _on_timer_timeout():
 	else:
 		# Timer for the final win screen has finished
 		get_tree().paused = false
-		get_tree().change_scene_to_file("res://scenes/phase2_main.tscn")
+		get_tree().change_scene_to_file("res://scenes/phase-2-main.tscn")
+		queue_free()
 
 func _show_win_screen():
 	news_screen_active = false

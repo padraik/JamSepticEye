@@ -12,6 +12,7 @@ var game_over = false
 func _ready():
 	GameEvents.player_caught.connect(_on_player_caught)
 	randomize()
+	print_debug("Main scene loaded: ", get_tree().current_scene.scene_file_path)
 	
 	var humans = get_tree().get_nodes_in_group("humans")
 	for human in humans:
