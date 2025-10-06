@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://cgfa46l3f3se2"]
+[gd_scene load_steps=8 format=4 uid="uid://cgfa46l3f3se2"]
 
 [ext_resource type="Script" uid="uid://vtavtyu6dmbn" path="res://scripts/main.gd" id="1_jg0ve"]
+[ext_resource type="PackedScene" uid="uid://b5w5d0f6v7q0h" path="res://scenes/player.tscn" id="2_abcde"]
 [ext_resource type="TileSet" uid="uid://cvqa3a3e4wh1b" path="res://assets/complete_tileset.tres" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b6oqvjg3p0k2v" path="res://scenes/police_officer.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://ddirnhlwtjk4x" path="res://scenes/ui.tscn" id="6_abcde"]
@@ -370,3 +371,6 @@ position = Vector2(-691, 3017)
 [node name="GameUI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="GameUI" instance=ExtResource("6_abcde")]
+
+[node name="Player" parent="." instance=ExtResource("2_abcde")]
+position = Vector2(830, 320)
