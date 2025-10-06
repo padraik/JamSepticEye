@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://dfllxgnwdxhra"]
+[gd_scene load_steps=6 format=4 uid="uid://dxkypt6uqy4vr"]
 
 [ext_resource type="Script" uid="uid://vtavtyu6dmbn" path="res://scripts/main.gd" id="1_3rccw"]
 [ext_resource type="TileSet" uid="uid://cvqa3a3e4wh1b" path="res://assets/complete_tileset.tres" id="2_6bsu1"]
-[ext_resource type="PackedScene" uid="uid://b6oqvjg3p0k2v" path="res://scenes/police_officer.tscn" id="3_gy8x3"]
-[ext_resource type="PackedScene" uid="uid://d1c2b3a4e5f6" path="res://scenes/human.tscn" id="4_5jfxt"]
-[ext_resource type="PackedScene" uid="uid://607u2kvxyogs" path="res://scenes/human2.tscn" id="5_vhpbr"]
+[ext_resource type="PackedScene" uid="uid://c6g25npt406j7" path="res://scenes/zombie.tscn" id="5_qq54y"]
 [ext_resource type="PackedScene" uid="uid://b5w5d0f6v7q0h" path="res://scenes/player.tscn" id="6_3bhuk"]
 [ext_resource type="PackedScene" uid="uid://ddirnhlwtjk4x" path="res://scenes/ui.tscn" id="7_jh6kh"]
 
@@ -35,339 +33,6 @@ tile_set = ExtResource("2_6bsu1")
 
 [node name="NPCS" type="Node2D" parent="World"]
 
-[node name="PoliceOfficer" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(1288, 240)
-
-[node name="Human" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(950, 498)
-
-[node name="Human2" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(342, 184)
-
-[node name="Human3" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(79, 374)
-
-[node name="Human4" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(-20, 738)
-
-[node name="Human5" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(484, 609)
-
-[node name="Human6" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(115, 1427)
-
-[node name="Human7" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(194, 1324)
-
-[node name="Human8" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(848, 1334)
-
-[node name="Human9" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-541, 2397)
-
-[node name="Human10" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(-456, 2450)
-
-[node name="Human11" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(367, 2625)
-
-[node name="Human12" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(528, 2899)
-
-[node name="Human13" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(374, 3122)
-
-[node name="Human14" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-769, 5186)
-
-[node name="Human15" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(851, 5444)
-
-[node name="Human16" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1854, 4793)
-
-[node name="Human17" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4914, 5219)
-
-[node name="Human18" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4805, 5312)
-
-[node name="Human19" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4973, 5344)
-
-[node name="Human20" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4875, 4504)
-
-[node name="Human21" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(5820, 4331)
-
-[node name="Human22" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4593, 3662)
-
-[node name="Human23" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(5139, 2052)
-
-[node name="Human24" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(5254, 2015)
-
-[node name="Human25" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(5220, 2108)
-
-[node name="Human26" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4752, 2019)
-
-[node name="Human27" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4642, 1902)
-
-[node name="Human28" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4089, 1946)
-
-[node name="Human29" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4174, 1888)
-
-[node name="Human30" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(2331, 517)
-
-[node name="Human31" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(2843, 518)
-
-[node name="Human32" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(2424, 705)
-
-[node name="Human33" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(2508, 116)
-
-[node name="Human34" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(2681, 329)
-
-[node name="Human35" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(1599, 1365)
-
-[node name="Human36" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1727, 1509)
-
-[node name="Human37" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(2832, 2152)
-
-[node name="Human38" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3231, 2136)
-
-[node name="Human39" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3634, -222)
-
-[node name="Human40" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3730, 195)
-
-[node name="Human41" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3656, 456)
-
-[node name="Human42" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3681, 928)
-
-[node name="Human43" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(-297, 419)
-
-[node name="Human44" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-198, 397)
-
-[node name="Human45" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-151, 2740)
-
-[node name="Human46" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(-68, 2661)
-
-[node name="PoliceOfficer2" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(19, 2955)
-
-[node name="PoliceOfficer3" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(617, 4360)
-
-[node name="PoliceOfficer4" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(2407, 5022)
-
-[node name="PoliceOfficer5" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(3756, 4040)
-
-[node name="PoliceOfficer6" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(4789, 2781)
-
-[node name="PoliceOfficer7" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(3717, 1894)
-
-[node name="PoliceOfficer8" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(3584, 2679)
-
-[node name="PoliceOfficer9" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(4229, 574)
-
-[node name="PoliceOfficer10" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(5876, 134)
-
-[node name="PoliceOfficer11" parent="World/NPCS" instance=ExtResource("3_gy8x3")]
-position = Vector2(187, 1038)
-
-[node name="Human47" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(784, 1174)
-
-[node name="Human48" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1650, 2887)
-
-[node name="Human49" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(2013, 3230)
-
-[node name="Human50" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1676, 3191)
-
-[node name="Human51" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(1894, 3028)
-
-[node name="Human52" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(1363, 4052)
-
-[node name="Human53" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1083, 4827)
-
-[node name="Human54" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(623, 4831)
-
-[node name="Human55" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(331, 4632)
-
-[node name="Human56" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(2104, 5775)
-
-[node name="Human57" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(2210, 5761)
-
-[node name="Human58" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3046, 4556)
-
-[node name="Human59" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3255, 4452)
-
-[node name="Human60" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(5500, 5402)
-
-[node name="Human61" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(6073, 4724)
-
-[node name="Human62" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(6539, 3438)
-
-[node name="Human63" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(6096, 2538)
-
-[node name="Human64" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(5989, 2652)
-
-[node name="Human65" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(5918, 1783)
-
-[node name="Human66" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(5711, 1458)
-
-[node name="Human67" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4404, 1838)
-
-[node name="Human68" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(5587, 322)
-
-[node name="Human69" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(5592, -56)
-
-[node name="Human70" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4145, -451)
-
-[node name="Human71" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4256, -501)
-
-[node name="Human72" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3428, 705)
-
-[node name="Human73" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3450, 273)
-
-[node name="Human74" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(1628, -273)
-
-[node name="Human75" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1730, -280)
-
-[node name="Human76" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(941, 2193)
-
-[node name="Human77" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(1016, 2129)
-
-[node name="Human78" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(26, 3577)
-
-[node name="Human79" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(154, 3481)
-
-[node name="Human80" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-891, 4367)
-
-[node name="Human81" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(-1087, 3705)
-
-[node name="Human82" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-414, 5847)
-
-[node name="Human83" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(220, 5695)
-
-[node name="Human84" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3156, 5787)
-
-[node name="Human85" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(4447, 5781)
-
-[node name="Human86" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4658, 5769)
-
-[node name="Human87" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3760, 4718)
-
-[node name="Human88" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3890, 4642)
-
-[node name="Human89" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3443, 3974)
-
-[node name="Human90" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3513, 4084)
-
-[node name="Human91" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3573, 4175)
-
-[node name="Human92" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(3918, 3141)
-
-[node name="Human93" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(4016, 3231)
-
-[node name="Human94" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(3362, 2449)
-
-[node name="Human95" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(1908, 2788)
-
-[node name="Human96" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1975, 2825)
-
-[node name="Human97" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(1299, 2617)
-
-[node name="Human98" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(896, 3047)
-
-[node name="Human99" parent="World/NPCS" instance=ExtResource("5_vhpbr")]
-position = Vector2(606, 2661)
-
-[node name="Human100" parent="World/NPCS" instance=ExtResource("4_5jfxt")]
-position = Vector2(-691, 3017)
-
 [node name="Player" parent="World" instance=ExtResource("6_3bhuk")]
 position = Vector2(855, 324)
 collision_mask = 7
@@ -375,3 +40,303 @@ collision_mask = 7
 [node name="GameUI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="GameUI" instance=ExtResource("7_jh6kh")]
+
+[node name="Zombie" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(160, 1356)
+
+[node name="Zombie2" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(804, 1286)
+
+[node name="Zombie3" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-112, 1435)
+
+[node name="Zombie4" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(360, 577)
+
+[node name="Zombie5" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(609, 362)
+
+[node name="Zombie6" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1100, 649)
+
+[node name="Zombie7" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1928, 245)
+
+[node name="Zombie8" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2733, 357)
+
+[node name="Zombie9" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2453, 472)
+
+[node name="Zombie10" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2458, 764)
+
+[node name="Zombie11" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2858, 634)
+
+[node name="Zombie12" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3706, 539)
+
+[node name="Zombie13" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2517, 1840)
+
+[node name="Zombie14" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1525, 2129)
+
+[node name="Zombie15" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(32, 3246)
+
+[node name="Zombie16" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1064, 2902)
+
+[node name="Zombie17" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2009, 2871)
+
+[node name="Zombie18" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1704, 2981)
+
+[node name="Zombie19" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1392, 2926)
+
+[node name="Zombie20" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4509, 1871)
+
+[node name="Zombie21" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4720, 1942)
+
+[node name="Zombie22" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5290, 1926)
+
+[node name="Zombie23" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5235, 2473)
+
+[node name="Zombie24" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3767, 2731)
+
+[node name="Zombie25" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4204, 3106)
+
+[node name="Zombie26" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2899, 2988)
+
+[node name="Zombie27" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2946, 3465)
+
+[node name="Zombie28" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4904, -30)
+
+[node name="Zombie29" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4654, 642)
+
+[node name="Zombie30" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5045, 681)
+
+[node name="Zombie31" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4381, 1181)
+
+[node name="Zombie32" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5198, 3584)
+
+[node name="Zombie33" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4643, 4177)
+
+[node name="Zombie34" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-310, 4240)
+
+[node name="Zombie35" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(378, 4138)
+
+[node name="Zombie36" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(57, 3912)
+
+[node name="Zombie37" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(159, 4841)
+
+[node name="Zombie38" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-286, 5679)
+
+[node name="Zombie39" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1292, 4640)
+
+[node name="Zombie40" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1385, 5101)
+
+[node name="Zombie41" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1768, 4741)
+
+[node name="Zombie42" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2120, 4359)
+
+[node name="Zombie43" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2323, 5218)
+
+[node name="Zombie44" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3081, 4351)
+
+[node name="Zombie45" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3198, 4624)
+
+[node name="Zombie46" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3733, 5491)
+
+[node name="Zombie47" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3143, 5530)
+
+[node name="Zombie48" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4440, 4898)
+
+[node name="Zombie49" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5424, 4312)
+
+[node name="Zombie50" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5565, 3859)
+
+[node name="Zombie51" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5932, 2992)
+
+[node name="Zombie52" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5721, 2718)
+
+[node name="Zombie53" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(6057, 2351)
+
+[node name="Zombie54" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5877, 4804)
+
+[node name="Zombie55" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(6145, 1376)
+
+[node name="Zombie56" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5871, 987)
+
+[node name="Zombie57" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4996, 1292)
+
+[node name="Zombie58" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2481, 1385)
+
+[node name="Zombie59" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3504, 2034)
+
+[node name="Zombie60" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3199, 1760)
+
+[node name="Zombie61" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3653, 1565)
+
+[node name="Zombie62" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3426, 1612)
+
+[node name="Zombie63" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2598, 2604)
+
+[node name="Zombie64" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3660, 3385)
+
+[node name="Zombie65" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5660, 18)
+
+[node name="Zombie66" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3988, -107)
+
+[node name="Zombie67" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-113, 2440)
+
+[node name="Zombie68" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2582, 3807)
+
+[node name="Zombie69" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4082, 3549)
+
+[node name="Zombie70" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3301, 2932)
+
+[node name="Zombie71" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1551, 2596)
+
+[node name="Zombie72" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2168, 1089)
+
+[node name="Zombie73" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5465, 979)
+
+[node name="Zombie74" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5395, 3221)
+
+[node name="Zombie75" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(6191, 1995)
+
+[node name="Zombie76" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-185, 5130)
+
+[node name="Zombie77" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-389, 4712)
+
+[node name="Zombie78" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-116, 4048)
+
+[node name="Zombie79" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-749, 3891)
+
+[node name="Zombie80" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(-155, 3392)
+
+[node name="Zombie81" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1368, 4141)
+
+[node name="Zombie82" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1087, 3993)
+
+[node name="Zombie83" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1743, 5360)
+
+[node name="Zombie84" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3540, 5009)
+
+[node name="Zombie85" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3118, 3813)
+
+[node name="Zombie86" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2774, 1649)
+
+[node name="Zombie87" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3485, 2298)
+
+[node name="Zombie88" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4852, 2524)
+
+[node name="Zombie89" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(5016, 5188)
+
+[node name="Zombie90" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4063, 5657)
+
+[node name="Zombie91" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1103, 4821)
+
+[node name="Zombie92" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(1212, 5782)
+
+[node name="Zombie93" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2579, 5719)
+
+[node name="Zombie94" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(2782, 4430)
+
+[node name="Zombie95" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(501, 3524)
+
+[node name="Zombie96" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4017, 4259)
+
+[node name="Zombie97" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3478, 4134)
+
+[node name="Zombie98" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3813, 4790)
+
+[node name="Zombie99" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(4188, 2501)
+
+[node name="Zombie100" parent="." instance=ExtResource("5_qq54y")]
+position = Vector2(3915, 3220)
