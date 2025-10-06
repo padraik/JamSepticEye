@@ -11,9 +11,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
-		var key: int = event.keycode
-		if key == KEY_W or key == KEY_A or key == KEY_S or key == KEY_D:
-			_dismiss_overlay()
+		_dismiss_overlay()
 
 func _dismiss_overlay():
 	visible = false
