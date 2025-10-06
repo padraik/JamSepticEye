@@ -134,8 +134,12 @@ func infect():
 		return
 	
 	state = INFECTED
+	set_collision(false)
 	$WanderTimer.stop()
 	$ConversionTimer.start()
+
+func set_collision(enabled):
+	$CollisionShape2D.disabled = not enabled
 
 func _on_wander_timer_timeout():
 	if state == IDLE:
@@ -143,6 +147,7 @@ func _on_wander_timer_timeout():
 		_pick_new_wander_destination()
 
 func _on_conversion_timer_timeout():
+	set_collision(true)
 	emit_signal("conversion_complete", self)
 
 func has_line_of_sight(target):

@@ -2,6 +2,7 @@ extends Node2D
 
 const ZOMBIE_SCENE = preload("res://scenes/zombie.tscn")
 const PHASE1_OVERLAY_SCENE = preload("res://scenes/phase1_overlay.tscn")
+const PHASE2_OVERLAY_SCENE = preload("res://scenes/phase2_overlay.tscn")
 const PHASE1_WIN_OVERLAY_SCENE = preload("res://scenes/phase1_win_overlay.tscn")
 const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
 const PHASE2_WIN_OVERLAY_SCENE = preload("res://scenes/phase2_win_overlay.tscn")
@@ -18,9 +19,15 @@ func _ready():
 	for human in humans:
 		human.conversion_complete.connect(_on_conversion_complete)
 
-	# Show Phase 1 overlay at start
-	var overlay = PHASE1_OVERLAY_SCENE.instantiate()
-	add_child(overlay)
+	# Show the correct overlay based on the current scene
+	var scene_name = get_tree().current_scene.scene_file_path
+	if "phase-2-main" in scene_name:
+		var overlay = PHASE2_OVERLAY_SCENE.instantiate()
+		add_child(overlay)
+	else:
+		# Show Phase 1 overlay at start
+		var overlay = PHASE1_OVERLAY_SCENE.instantiate()
+		add_child(overlay)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
