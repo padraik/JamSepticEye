@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5w5d0f6v7q0h"]
+[gd_scene load_steps=18 format=3 uid="uid://b5w5d0f6v7q0h"]
 
 [ext_resource type="Script" uid="uid://dsoqtop4v2by1" path="res://scripts/player.gd" id="1_abcde"]
 [ext_resource type="Texture2D" uid="uid://2ri5ou6tcuve" path="res://assets/player-spritesheet.png" id="2_player_sprite"]
+[ext_resource type="Texture2D" uid="uid://c6g7h8i9j0k1" path="res://assets/dezombie-cloud.png" id="3_cloud_tex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_player_sprite")
@@ -114,6 +115,9 @@ height = 153.48837
 [sub_resource type="CircleShape2D" id="CircleShape2D_abcde"]
 radius = 252.68423
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_defgh"]
+radius = 252.68423
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-14, -32)
 script = ExtResource("1_abcde")
@@ -132,6 +136,26 @@ shape = SubResource("CapsuleShape2D_12345")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+
+[node name="DezombieCloud" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(14, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_cloud_tex")
+
+[node name="DezombieArea" type="Area2D" parent="."]
+position = Vector2(14, 32)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DezombieArea"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_defgh")
+
+[node name="DezombieTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [node name="ConversionArea" type="Area2D" parent="."]
 collision_layer = 0

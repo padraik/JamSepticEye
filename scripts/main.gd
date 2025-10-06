@@ -4,6 +4,7 @@ const ZOMBIE_SCENE = preload("res://scenes/zombie.tscn")
 const PHASE1_OVERLAY_SCENE = preload("res://scenes/phase1_overlay.tscn")
 const PHASE1_WIN_OVERLAY_SCENE = preload("res://scenes/phase1_win_overlay.tscn")
 const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
+const PHASE2_WIN_OVERLAY_SCENE = preload("res://scenes/phase2_win_overlay.tscn")
 
 @onready var ui = $GameUI/HUD
 var game_over = false
@@ -29,15 +30,26 @@ func _process(_delta):
 	
 	ui.update_counts(humans - police, zombies, police)
 
-	# Win condition: no humans and no police
-	if humans - police <= 0 and police <= 0:
-		_trigger_phase1_win()
+	# Check win conditions based on the current scene
+	var scene_name = get_tree().current_scene.scene_file_path
+	if "phase-2-main" in scene_name:
+		# Phase 2 Win Condition: No zombies left
+		if zombies <= 0 and not game_over:
+			_trigger_phase2_win()
+	else:
+		# Phase 1 Win Condition: No humans and no police
+		if humans - police <= 0 and police <= 0 and not game_over:
+			_trigger_phase1_win()
 
 func _unhandled_input(event):
-	# Debug: Press 'P' to instantly win Phase 1
+	# Debug: Press 'P' to instantly win the current phase
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_P:
-			_trigger_phase1_win()
+			var scene_name = get_tree().current_scene.scene_file_path
+			if "phase-2-main" in scene_name:
+				_trigger_phase2_win()
+			else:
+				_trigger_phase1_win()
 
 func _on_conversion_complete(person):
 	if person.is_queued_for_deletion():
@@ -57,6 +69,13 @@ func _trigger_phase1_win():
 		return
 	_win_triggered = true
 	var overlay = PHASE1_WIN_OVERLAY_SCENE.instantiate()
+	add_child(overlay)
+
+func _trigger_phase2_win():
+	if _win_triggered:
+		return
+	_win_triggered = true
+	var overlay = PHASE2_WIN_OVERLAY_SCENE.instantiate()
 	add_child(overlay)
 
 func _on_player_caught(zombie, player):
